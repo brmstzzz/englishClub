@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grow Together - English Club</title>
     <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
     <header id="navbar">
@@ -40,8 +43,13 @@
                         <img src="{{ asset('assets/images/grow.png') }}" alt="Student">
                     </div>
                     <div class="hero-text-box">
-                        <p>Move beyond the classroom and master the natural, flowing English used in real-world situations every day. Our club bridges the gap between textbooks and true fluency, offering a dynamic space to practice the idioms, tone, and cultural nuances you won't find in a lesson plan. Don't just study the language, start living it.</p>
-                        <a href="#activities" class="btn-white">See More</a>
+                        <p>Move beyond the classroom and master the natural, flowing English used in real-world
+                            situations every day. Our club bridges the gap between textbooks and true fluency, offering
+                            a dynamic space to practice the idioms, tone, and cultural nuances you won't find in a
+                            lesson plan. Don't just study the language, start living it.</p>
+                        <button type="button" class="btn-register">
+                            Register
+                        </button>
                     </div>
                 </div>
             </div>
@@ -55,31 +63,15 @@
                     @php $layout = $loop->even ? 'layout-text-left' : 'layout-img-left'; @endphp
                     <div class="activity-group">
                         <div class="activity-card {{ $layout }}">
-                            @if ($layout === 'layout-img-left')
-                                <div class="act-img">
-                                    <img src="{{ asset('images/grow.png') }}" alt="{{ $schedule->title }}">
-                                </div>
-                            @endif
-
                             <div class="act-text">
                                 <h3>{{ $schedule->title }}</h3>
                                 <p>{{ $schedule->activity }}</p>
-                                <button type="button"
-                                        class="btn-register">
-                                    Register
-                                </button>
                             </div>
-
-                            @if ($layout === 'layout-text-left')
-                                <div class="act-img">
-                                    <img src="{{ asset('images/grow.png') }}" alt="{{ $schedule->title }}">
-                                </div>
-                            @endif
                         </div>
                         <div class="activity-info">
                             <div class="info-top">
                                 <h4>{{ $schedule->title }}</h4>
-                                <span class="badge">{{ ucfirst($schedule->status) }}</span>
+                                <span class="badge">{{ ucfirst($schedule->computed_status) }}</span>
                             </div>
                             <div class="info-bottom">
                                 <div class="info-col">{{ \Carbon\Carbon::parse($schedule->day)->format('d M Y') }}</div>
@@ -102,9 +94,6 @@
                 @forelse ($events as $event)
                     <div class="activity-group">
                         <div class="activity-card layout-img-left">
-                            <div class="act-img">
-                                <img src="{{ asset('images/grow.png') }}" alt="{{ $event->title }}">
-                            </div>
                             <div class="act-text">
                                 <h3>{{ $event->title }}</h3>
                                 <p>{{ $event->description }}</p>
@@ -113,11 +102,11 @@
                         <div class="activity-info">
                             <div class="info-top">
                                 <h4>{{ $event->title }}</h4>
-                                <span class="badge">{{ ucfirst($event->status) }}</span>
+                                <span class="badge">{{ ucfirst($event->computed_status) }}</span>
                             </div>
                             <div class="info-bottom">
                                 <div class="info-col">{{ \Carbon\Carbon::parse($event->date)->format('d M Y') }}</div>
-                                <div class="info-col">Status: {{ ucfirst($event->status) }}</div>
+                                <div class="info-col">Status: {{ ucfirst($event->computed_status) }}</div>
                                 <div class="info-col">Basecamp English Club</div>
                             </div>
                         </div>
@@ -136,25 +125,29 @@
                     <div class="feature-icon"><i class="fas fa-brain"></i></div>
                     <h4>Immersive Learning</h4>
                     <hr>
-                    <p>We dry the theory and simulate environments where you spend more time speaking. Learn by doing to build muscle memory.</p>
+                    <p>We dry the theory and simulate environments where you spend more time speaking. Learn by doing to
+                        build muscle memory.</p>
                 </div>
                 <div class="featured-card">
                     <div class="feature-icon"><i class="fas fa-users"></i></div>
                     <h4>A Community of Growth</h4>
                     <hr>
-                    <p>Join a diverse network of learners. Share resources and enjoy a safe space to make mistakes and grow together.</p>
+                    <p>Join a diverse network of learners. Share resources and enjoy a safe space to make mistakes and
+                        grow together.</p>
                 </div>
                 <div class="featured-card">
                     <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                     <h4>Expert Mentorship</h4>
                     <hr>
-                    <p>Our regular sessions pair experienced speakers with beginners. Everyone has something to teach and room to improve.</p>
+                    <p>Our regular sessions pair experienced speakers with beginners. Everyone has something to teach
+                        and room to improve.</p>
                 </div>
                 <div class="featured-card">
                     <div class="feature-icon"><i class="fas fa-award"></i></div>
                     <h4>Real-World Success</h4>
                     <hr>
-                    <p>From acing job interviews to confident university presentations, see tangible results in professional and academic lives.</p>
+                    <p>From acing job interviews to confident university presentations, see tangible results in
+                        professional and academic lives.</p>
                 </div>
             </div>
         </section>
@@ -164,7 +157,9 @@
             <div class="contact-box">
                 <div class="contact-text">
                     <h3 class="contact-subtitle">Ready to Start Your Journey?</h3>
-                    <p class="contact-desc">We'd love to have you! Whether you're a beginner looking to build a foundation or an advanced speaker aiming for perfection, there's a place for you here. Drop us a message or stop by our next session.</p>
+                    <p class="contact-desc">We'd love to have you! Whether you're a beginner looking to build a
+                        foundation or an advanced speaker aiming for perfection, there's a place for you here. Drop us a
+                        message or stop by our next session.</p>
                 </div>
                 <div class="social-links">
                     <div class="social-item">
@@ -200,9 +195,8 @@
     </main>
 
     {{-- Modal Registrasi Participant --}}
-    <div class="modal-overlay {{ $errors->any() ? 'show' : '' }}"
-         id="registerModal"
-         data-has-error="{{ $errors->any() ? '1' : '0' }}">
+    <div class="modal-overlay {{ $errors->any() ? 'show' : '' }}" id="registerModal"
+        data-has-error="{{ $errors->any() ? '1' : '0' }}">
         <div class="modal-box">
             <button type="button" class="modal-close" aria-label="Close">
                 <i class="fas fa-times"></i>
@@ -215,13 +209,15 @@
 
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Enter your full name">
+                    <input type="text" id="name" name="name" value="{{ old('name') }}"
+                        placeholder="Enter your full name">
                     @error('name') <span class="form-error">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email">
+                    <input type="email" id="email" name="email" value="{{ old('email') }}"
+                        placeholder="Enter your email">
                     @error('email') <span class="form-error">{{ $message }}</span> @enderror
                 </div>
 
@@ -248,4 +244,5 @@
 
     <script src="{{ asset('assets/js/landing.js') }}"></script>
 </body>
+
 </html>
