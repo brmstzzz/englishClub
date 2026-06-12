@@ -16,7 +16,7 @@
     <!-- Quixlab Core Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     @stack('styles')
-    
+
 </head>
 
 <body>
@@ -85,8 +85,7 @@
                                         <li>
                                             <form action="{{ route('admin.logout') }}" method="POST">
                                                 @csrf
-                                                <button type="submit"
-                                                    style="background:none;border:none;cursor:pointer;padding:0;">
+                                                <button type="submit">
                                                     <i class="icon-key"></i>
                                                     <span>Logout</span>
                                                 </button>

@@ -47,7 +47,7 @@ class PublicController extends Controller
 
         Participant::create($validated);
 
-        return redirect()->route('home')
+        return redirect()->route('welcome')
             ->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
     }
 }

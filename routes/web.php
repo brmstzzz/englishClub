@@ -12,8 +12,12 @@ use App\Http\Controllers\Admin\ParticipantController;
 // PUBLIC ROUTES (User)
 // =============================================
 
+Route::post('/', function () {
+    dd('POST KE / TERDETEKSI');
+});
+
 // Landing Page
-Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/', [PublicController::class, 'index'])->name('welcome');
 
 // Pendaftaran Peserta (Register Participant)
 Route::get('/register/{eventId}', [PublicController::class, 'registerForm'])->name('register.form');
