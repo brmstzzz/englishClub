@@ -9,58 +9,45 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    // Halaman Landing Page
+    /**
+     * Landing page
+     */
     public function index()
     {
-        $events    = Event::where('status', 'active')->latest()->take(3)->get();
-        $schedules = Schedule::where('status', 'upcoming')->get();
-        return view('public.index', compact('events', 'schedules'));
+        $schedules = Schedule::where('status', 'upcoming')
+            ->orderBy('day', 'asc')
+            ->get();
+
+        $events = Event::latest('date')->get();
+
+        return view('welcome', compact('schedules', 'events'));
     }
 
-    // Halaman Activities (daftar event)
-    public function activities()
-    {
-        $events    = Event::where('status', 'active')->latest()->get();
-        $schedules = Schedule::where('status', 'upcoming')->get();
-        return view('public.activities', compact('events', 'schedules'));
-    }
-
-    // Halaman Featured
-    public function featured()
-    {
-        return view('public.featured');
-    }
-
-    // Halaman Contacts
-    public function contacts()
-    {
-        return view('public.contacts');
-    }
-
-    // Tampilkan form registrasi untuk event tertentu
+    /**
+     * (Opsional) Form registrasi halaman terpisah - tidak dipakai karena pakai modal,
+     * tapi tetap disediakan agar route lama tetap berjalan.
+     */
     public function registerForm($eventId)
     {
         $event = Event::findOrFail($eventId);
-        return view('public.register', compact('event'));
+        return view('register', compact('event'));
     }
 
-    // Proses submit form registrasi
+    /**
+     * Proses simpan registrasi peserta (dipanggil dari modal di landing page)
+     */
     public function registerSubmit(Request $request)
     {
-        // Validasi data form
         $validated = $request->validate([
             'name'          => 'required|string|max:100',
-            'email'         => 'required|email|max:100',
+            'email'         => 'required|email',
             'phone'         => 'required|string|max:20',
             'jenis_kelamin' => 'required|in:L,P',
-            'event_id'      => 'required|exists:events,id',
         ]);
 
-        // Simpan ke database
         Participant::create($validated);
 
-        // Redirect ke activities dengan pesan sukses
-        return redirect()->route('activities')
-            ->with('success', 'Pendaftaran berhasil! Silakan tunggu konfirmasi dari admin.');
+        return redirect()->route('home')
+            ->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
     }
 }

@@ -11,10 +11,9 @@ use App\Http\Controllers\Admin\ParticipantController;
 // =============================================
 // PUBLIC ROUTES (User)
 // =============================================
+
+// Landing Page
 Route::get('/', [PublicController::class, 'index'])->name('home');
-Route::get('/activities', [PublicController::class, 'activities'])->name('activities');
-Route::get('/featured', [PublicController::class, 'featured'])->name('featured');
-Route::get('/contacts', [PublicController::class, 'contacts'])->name('contacts');
 
 // Pendaftaran Peserta (Register Participant)
 Route::get('/register/{eventId}', [PublicController::class, 'registerForm'])->name('register.form');
