@@ -10,17 +10,13 @@ return new class extends Migration {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('day');
+            $table->date('day');
             $table->time('time');
             $table->string('activity');
-            $table->enum('status', ['upcoming', 'ongoing', 'ended'])->default('upcoming');
             $table->timestamps();
         });
     }
 
-        /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('schedules');

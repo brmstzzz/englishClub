@@ -12,13 +12,10 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description');
             $table->date('date');
-            $table->enum('status', ['upcoming', 'ongoing', 'ended'])->default('upcoming');
             $table->timestamps();
         });
     }
-        /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('events');

@@ -50,29 +50,6 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label>Status Event</label>
-                            <select name="status" class="form-control" required>
-                                <option value="" disabled selected>-- Pilih Status --</option>
-
-                                <option value="upcoming" {{ old('status') == 'upcoming' ? 'selected' : '' }}>
-                                    Upcoming
-                                </option>
-
-                                <option value="ongoing" {{ old('status') == 'ongoing' ? 'selected' : '' }}>
-                                    Ongoing
-                                </option>
-
-                                <option value="ended" {{ old('status') == 'ended' ? 'selected' : '' }}>
-                                    Ended
-                                </option>
-                            </select>
-
-                            @error('status')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-
                         <button type="submit" class="btn btn-primary float-right">
                             <i class="fa fa-save"></i> Simpan
                         </button>
@@ -82,6 +59,6 @@
 
             </div>
         </div>
-
     </div>
+
 @endsection

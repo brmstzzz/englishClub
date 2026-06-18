@@ -11,7 +11,6 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedules = Schedule::latest()->get();
-
         return view('admin.schedules.index', compact('schedules'));
     }
 
@@ -27,13 +26,11 @@ class ScheduleController extends Controller
             'day'      => 'required|date',
             'time'     => 'required',
             'activity' => 'required|string|max:255',
-            'status'   => 'required|in:upcoming,ongoing,ended',
         ]);
 
         Schedule::create($validated);
 
-        return redirect()
-            ->route('admin.schedules.index')
+        return redirect()->route('admin.schedules.index')
             ->with('success', 'Jadwal berhasil ditambahkan!');
     }
 
@@ -49,22 +46,18 @@ class ScheduleController extends Controller
             'day'      => 'required|date',
             'time'     => 'required',
             'activity' => 'required|string|max:255',
-            'status'   => 'required|in:upcoming,ongoing,ended',
         ]);
 
         $schedule->update($validated);
 
-        return redirect()
-            ->route('admin.schedules.index')
+        return redirect()->route('admin.schedules.index')
             ->with('success', 'Jadwal berhasil diperbarui!');
     }
 
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();
-
-        return redirect()
-            ->route('admin.schedules.index')
+        return redirect()->route('admin.schedules.index')
             ->with('success', 'Jadwal berhasil dihapus!');
     }
 }

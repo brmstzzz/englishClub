@@ -14,9 +14,7 @@ class PublicController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::where('status', 'upcoming')
-            ->orderBy('day', 'asc')
-            ->get();
+        $schedules = Schedule::orderBy('day', 'asc')->get();
 
         $events = Event::latest('date')->get();
 
@@ -47,7 +45,7 @@ class PublicController extends Controller
 
         Participant::create($validated);
 
-        return redirect()->route('welcome')
+        return redirect()->route('home')
             ->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
     }
 }

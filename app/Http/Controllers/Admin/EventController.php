@@ -25,7 +25,6 @@ class EventController extends Controller
             'title'       => 'required|string|max:200',
             'description' => 'required',
             'date'        => 'required|date',
-            'status'      => 'required|in:upcoming,ongoing,ended',
         ]);
 
         Event::create($validated);
@@ -45,7 +44,6 @@ class EventController extends Controller
             'title'       => 'required|string|max:200',
             'description' => 'required',
             'date'        => 'required|date',
-            'status'      => 'required|in:upcoming,ongoing,ended',
         ]);
 
         $event->update($validated);

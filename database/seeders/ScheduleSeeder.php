@@ -12,19 +12,17 @@ class ScheduleSeeder extends Seeder
         Schedule::insert([
             [
                 'title'      => 'Weekly Training',
-                'day'        => 'Thursday',
+                'day'        => '2026-06-19',
                 'time'       => '15:00:00',
                 'activity'   => 'Public Speaking Practice',
-                'status'     => 'upcoming',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'title'      => 'Monthly Workshop',
-                'day'        => 'Saturday',
+                'day'        => '2026-06-28',
                 'time'       => '09:00:00',
                 'activity'   => 'Writing & Grammar Intensive',
-                'status'     => 'upcoming',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

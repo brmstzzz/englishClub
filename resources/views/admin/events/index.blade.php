@@ -47,18 +47,12 @@
                                 </td>
 
                                 <td>
-                                    @if($event->status == 'upcoming')
-                                        <span class="badge badge-info">
-                                            Upcoming
-                                        </span>
-                                    @elseif($event->status == 'ongoing')
-                                        <span class="badge badge-warning">
-                                            Ongoing
-                                        </span>
-                                    @else($event->status == 'ended')
-                                        <span class="badge badge-danger">
-                                            Ended
-                                        </span>
+                                    @if($event->computed_status == 'upcoming')
+                                        <span class="badge badge-info">Upcoming</span>
+                                    @elseif($event->computed_status == 'ongoing')
+                                        <span class="badge badge-warning">Ongoing</span>
+                                    @else
+                                        <span class="badge badge-danger">Ended</span>
                                     @endif
                                 </td>
 
