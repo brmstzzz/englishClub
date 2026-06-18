@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Carbon\Carbon;
 
 class Schedule extends Model
@@ -15,16 +16,10 @@ class Schedule extends Model
         'status',
     ];
 
-    /**
-     * Durasi default kegiatan (jam). Sesuaikan jika perlu.
-     */
     protected $durationHours = 2;
 
     /**
      * Status otomatis berdasarkan tanggal & jam mulai kegiatan.
-     * - upcoming: belum dimulai
-     * - ongoing : sedang berlangsung (start <= now < end)
-     * - ended   : sudah selesai
      */
     public function getComputedStatusAttribute(): string
     {
@@ -42,5 +37,14 @@ class Schedule extends Model
         }
 
         return 'ended';
+    }
+
+    /**
+     * Hubungan ke data Partisipan yang mendaftar Schedule ini
+     */
+    public function participants(): HasMany
+    {
+        // Diubah dari 'event_id' menjadi 'schedule_id'
+        return $this->hasMany(\App\Models\Participant::class, 'schedule_id');
     }
 }

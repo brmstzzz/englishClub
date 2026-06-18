@@ -58,4 +58,15 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')
             ->with('success', 'Event berhasil dihapus!');
     }
+
+    /**
+     * Tambahan Fitur: Melihat list partisipan yang join ke event tertentu
+     */
+    public function listParticipants(Request $request, $id)
+    {
+        $event = Event::findOrFail($id);
+        $participants = $event->participants()->latest()->get();
+
+        return view('admin.events.participants', compact('event', 'participants'));
+    }
 }

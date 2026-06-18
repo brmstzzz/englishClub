@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+// PASTIKAN BARIS DI BAWAH INI TERTULIS DENGAN BENAR:
+use Illuminate\Database\Eloquent\Relations\HasMany; 
 use Carbon\Carbon;
-
 class Event extends Model
 {
     protected $fillable = [
@@ -34,5 +35,13 @@ class Event extends Model
         }
 
         return 'ended';
+    }
+
+    /**
+     * Hubungan ke data Partisipan yang mendaftar Event ini
+     */
+    public function participants(): HasMany
+    {
+        return $this->hasMany(\App\Models\Participant::class, 'event_id');
     }
 }

@@ -81,6 +81,15 @@
                                     </form>
 
                                 </td>
+
+                                <td>{{ $schedule->participants()->count() }} Orang</td>
+
+                                <td>
+                                    <a href="{{ route('admin.schedules.participants', $schedule->id) }}"
+                                        class="btn btn-sm btn-primary">
+                                        Lihat List
+                                    </a>
+                                </td>
                             </tr>
 
                         @empty

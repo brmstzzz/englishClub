@@ -48,4 +48,29 @@ class PublicController extends Controller
         return redirect()->route('home')
             ->with('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
     }
+
+    /**
+     * Tambahan Fitur: Proses join Event atau Schedule hanya dengan Nama & No Telp
+     */
+    public function joinFiturBaru(Request $request)
+    {
+        $request->validate([
+            'name'        => 'required|string|max:100',
+            'phone'       => 'required|string|max:20',
+            'event_id'    => 'nullable|exists:events,id',
+            'schedule_id' => 'nullable|exists:schedules,id',
+        ]);
+
+        // Menggunakan query builder direct/model baru tanpa mengganggu skema pendaftaran lama
+        \App\Models\Participant::create([
+            'name'          => $request->name,
+            'phone'         => $request->phone,
+            'event_id'      => $request->event_id,
+            'schedule_id'   => $request->schedule_id,
+            'email'         => null, // Diisi null sesuai request (cukup nama & telp)
+            'jenis_kelamin' => null,
+        ]);
+
+        return redirect()->back()->with('success', 'Kamu berhasil bergabung!');
+    }
 }

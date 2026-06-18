@@ -31,7 +31,7 @@ class ScheduleController extends Controller
         Schedule::create($validated);
 
         return redirect()->route('admin.schedules.index')
-            ->with('success', 'Jadwal berhasil ditambahkan!');
+            ->with('with', 'Jadwal berhasil ditambahkan!');
     }
 
     public function edit(Schedule $schedule)
@@ -59,5 +59,16 @@ class ScheduleController extends Controller
         $schedule->delete();
         return redirect()->route('admin.schedules.index')
             ->with('success', 'Jadwal berhasil dihapus!');
+    }
+
+    /**
+     * Tambahan Fitur: Melihat list partisipan yang join ke schedule tertentu
+     */
+    public function listParticipants(Request $request, $id)
+    {
+        $schedule = Schedule::findOrFail($id);
+        $participants = $schedule->participants()->latest()->get();
+
+        return view('admin.schedules.participants', compact('schedule', 'participants'));
     }
 }
